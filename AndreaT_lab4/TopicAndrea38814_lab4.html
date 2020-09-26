@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+<head>
+	<meta charset="UTF-8">
+	<title> WEB Store -LAB 4&9- </title>
+<style> 
+#forma1,#forma2{display:inline-block; background-color:hsla(180, 100%, 40%, 40%); text-shadow:5px 5px 5px #0404e0;
+border-color:#0de8e0; color:#8ce80b; border-style:groove; border-radius:7px;}
+#forma2{align:center;}
+h1,h3{text-shadow:8px 5px 10px #f23ee3;}
+legend{color:#0de8e0; text-size:1.5rem;}
+body{background:url('store2.jpg'); 
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	background-position:center; 
+	background-size:1400px 600px;
+	color:#8ce80b; text-align:center;}
+button{margin:15px;}
+input{margin:5px; padding:2px;}
+.dio{background-color:rgba(255, 0, 233, 0.3);
+	border-width:4px 0px 4px 0px; border-color:rgb(255, 0, 233);
+	border-style:inset; border-radius:10px;
+	}
+</style>
+<script>
+/*Nadogradite laboratorijsku vježbu "HTML/CSS Laboratorijska vježba 4" sa skriptom 
+koja će provjeravati upisane podatke i koja će omogućiti izravno ispisivanje vrsti pogreški pri njihovom nastajanju.
+ Potrebno je omogućiti i ispisivanje savjeta pri ispunjavanju kontrola formi.
+ Ukoliko su svi podaci ispravno upisani, ispisati podatke koje je korisnik upisao.*/
+ 
+function prosljedivanje(){
+var ime=document.getElementById("ime").value;
+var prezime=document.getElementById('prez').value;
+var email=document.getElementById('email').value;
+var korisnicko=document.getElementById('korisnicko').value;
+var lozinka=document.getElementById('lozinka').value;
+var lozprovjera=document.getElementById('passprovjera').value;
+var registracija=document.getElementById('reg'); //div id
+var regis=document.getElementById('dio'); // div element 
+regis.style.display === "none";
+
+if(ime!='' && prezime!='' && email!='' && korisnicko!='' && lozinka!=''){
+		if (lozinka == lozprovjera){
+				registracija.style.display = "block";
+				regis.innerHTML ='Vaša lozinka je ' + lozinka;
+				alert(" Uspješno ste napravili registraciju! ");
+					return true;
+			}
+		else{ 
+			registracija.style.display = "block";
+			regis.innerHTML = lozinka + ' ' + lozprovjera;
+			alert('Lozinke se ne podudaraju!');
+			}
+		}
+else{
+	alert('Unesi obavezna polja');
+	}	
+}
+
+
+function PogledajPassword() {
+var pogledajLozinku=document.getElementById('pogledaj'); //div id
+var pasw=document.getElementById('pass2').value;
+var el=document.getElementById('element'); // div element
+
+if (pogledajLozinku.style.display === "none") {
+		pogledajLozinku.style.display = "block";
+		el.innerHTML='uneseno: '+pasw ;
+	  }
+	  else {
+		pogledajLozinku.style.display = "none";
+	  }
+  }
+
+function check(){
+	var kor_ime=document.getElementById('username').value;
+	var pasw=document.getElementById('pass2').value;
+	var passw=document.getElementById('passprovjera2').value;
+	var reime=/^[a-z-0-9\_]{6,12}$/;
+	var pozz=document.getElementById('poz');
+
+	if(kor_ime=='' || pasw==''){
+		pozz.innerHTML= 'Jedno od polja prijave nije popunjeno';
+		return false;
+		}
+	if (pasw==passw && reime.test(kor_ime)){
+		alert("Pozdrav " + kor_ime);		
+		return true;
+		}
+
+	else{ 
+		alert("Pogrešna lozinka, ponovite unos");		
+		return false;	
+		}	
+	
+	}
+	
+	
+function funk(form3){
+var txt=''; var tekst=''; var t='';
+var Sezona=document.forms[2].Sezona;
+var kategorija=document.forms[2].kateg;
+var kol=document.form3.kol;
+var i;
+var prikazi=document.getElementById('odabrano');
+var prikaz=document.getElementById('odabr');
+
+var prikaziSve ="";
+
+	for(i=0; i<Sezona.length; i++){
+		if(Sezona[i].checked){
+			tekst += Sezona[i].value + ", ";
+		}
+		}
+		prikaziSve+= 'sezonu: ' + tekst;
+	
+	
+	for(i=0; i<kategorija.length; i++){
+		if(kategorija[i].checked){
+			txt += kategorija[i].value + ", ";
+		}
+	}	
+	prikaziSve+= 'kategoriju: ' + txt;
+	
+	for(i=0; i<kol.length; i++){
+		if(kol[i].checked){
+			t += kol[i].value + " ";
+		}
+		
+	}
+	prikaziSve+=t;
+	prikazi.innerHTML  = prikaziSve;	  //sve u jedan string koji se na kraju ispisuje
+	
+	
+	if(!tekst && !txt && !t){ 
+		alert('Niste označili odabir');
+	}
+}
+ </script>
+
+</head> 
+
+<body>
+	<header> <h1> ...Prodaja Neonske Odjeće...</h1></header>	
+
+	<datalist id="gradovi">
+		<option label="Dubrovnik">Dubrovnik</option>
+		<option label="Makarska">Makarska</option>
+		<option label="Osijek">Osijek</option>
+		<option label="Pula">Pula</option>
+		<option label="Rijeka">Rijeka</option>
+		<option label="Sisak">Sisak</option>
+		<option label="Split">Split</option>
+		<option label="Zadar">Zadar</option>
+		<option label="Zagreb">Zagreb</option>
+	</datalist>
+	<datalist id="konfekcijski broj">
+		<option label="xS"> -XS- </option>
+		<option label="S"> -S- </option>
+		<option label="M"> -M- </option>
+		<option label="L"> -L- </option>
+		<option label="XL"> -XL- </option>
+		<option label="XXL"> -XXL- </option>
+	</datalist>
+
+	
+
+
+	<form name="forma1" id="forma1" method='post'>
+			<legend>Registracija</legend>
+			Vaše ime:
+			<input type="text" name="ime" id='ime' title="ovo polje je obavezno" required/><br/>
+			Vaše Prezime:
+			<input type="text" name="prezime" id='prez' required/><br/>
+			Email: 
+			<input type="email" name="email" placeholder="Upišite email" id='email' title="ovo polje je obavezno" pattern="[\w_]+@([A-z0-9]+\.)+[A-z]{2,4}" required/><br/>
+			<br/><br/>Korisničko Ime:
+			<input type="text" name="KorisničkoIme" id='korisnicko' placeholder="Upisite korisničko ime"/>
+			<br/>Lozinka:
+			<input type="password" name="lozinka" id='lozinka' placeholder="Type Password" title="ovo polje je obavezno" required/>
+			<br/>Provjera lozinke:
+			<input type="password" name="lozinka" id='passprovjera' placeholder="Password" value="" required/>
+			<div id='reg'>	<p id='dio'><p></div>	
+			<br/>Spol:
+			<input type="radio" name="spol" value="Muško"/>Muško 
+			<input type="radio" name="spol" value="Žensko"/>Žensko
+			
+			<br/>Dob:
+			<input type="number" name="broj" min="10" max="100" step="1"/>
+			Datum Rodjenja:
+		<input type="date" name="datum"/>
+		<br/>Grad:
+			<input type="text" name="Grad" placeholder="Odaberi Grad" list="gradovi"/>
+			<br/>
+			<input type="submit" id="btn" value="Dalje" onclick="return prosljedivanje(this);"/>
+</form>	
+
+
+	<form  name="forma2" id='forma2' method='post'>
+		<legend>Prijavi se</legend><br/>
+		Korisničko ime:
+		<input type="text" name="korisnickoIme" id='username' placeholder="User Name" required/>
+		<div id='poruka1'></div>
+		<br/>Lozinka:
+		<input type="password" name="lozinka" id='pass2' placeholder="Password" value="" required/>
+		<button onclick="PogledajPassword()">Pogledaj Lozinku</button>
+		<br/><div id='pogledaj'><p id='element'></p> </div>
+		Provjera lozinke:
+		<input type="password" name="lozinka" id='passprovjera2' placeholder="Password" value="" required/>
+		<div id='poruka2'></div>
+		<br/><input type="submit" id="botun" value="Prijavi Se" onclick='check()'/>
+
+	<p id="poz"></p>
+	</form>
+	
+<br/>
+
+<h3> -Označi polja za pretragu- </h3>
+<section class="dio">	Odaberi kolekciju iz sezone: 
+<form name='form3'>
+		<input type="checkbox" name="Sezona" id='sez1' value='ljeto'/> Ljeto 
+		<input type="checkbox" name="Sezona" id='sez2' value='zima'> Zima 
+		<input type="checkbox" name="Sezona" id='sez3' value='jesen/proljece'> Jesen/Proljeće<br/>
+			Kategorija: 
+			<input type="checkbox" name="kateg" value='majice'/> Majice
+			<input type="checkbox" name="kateg" value='hoodie'/> Hoodie
+			<input type="checkbox" name="kateg" value='hlace'/> Hlače
+			<input type="checkbox" name="kateg" value='trenerke'/> Trenerke
+			<input type="checkbox" name="kateg" value='ostalo'/> Ostalo
+		<br/>
+			<input type="checkbox" name="kol" value='muska kolekcija'/> Muška kolekcija
+			<input type="checkbox" name="kol" value='zenska kolekcija'/> Ženska kolekcija
+			<input type="checkbox" name="kol" value='unisex kolekcija'/> Unisex
+		<br/>
+			Veličina:
+			<input type="text" placeholder="odaberi velicinu" list="konfekcijski broj"/>
+			<input type="number" name="broj" placeholder="odaberi velicinu" min="34" max="48" step="2">
+		Boja: <input type="color" name="boja"> 
+		</form>
+		<br/>
+		<button type="reset" name="reset" value='Poništi'> Poništi</button>
+		<button type="button" onclick='funk()' value='Pregledaj'> Pregledaj</button><br/>
+</section>	
+
+	<div id='odaberi'> <h3>Odabrali ste:</h3>
+		<p id="odabrano"> <p>	<p id="odabr"> <p>
+	</div>
+
+		<map name="mapa" width="1000px">
+		   <img src="majica.jpg" width="300px" height="300px"><img src="images.jpg" width="300px" height="300px">
+		   <img src="komb.jpg" width="250px" height="300px"><img src="haljina.jpg" width="250px" height="300px">   
+		</map>
+	<img src="store.jpg" width="1500px">
+
+ </body>
+
+
+</html>
